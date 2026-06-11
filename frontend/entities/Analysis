@@ -1,0 +1,74 @@
+{
+  "name": "Analysis",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "reviews_count": {
+      "type": "number",
+      "default": 0
+    },
+    "summary": {
+      "type": "string"
+    },
+    "sentiment_positive": {
+      "type": "number",
+      "default": 0
+    },
+    "sentiment_neutral": {
+      "type": "number",
+      "default": 0
+    },
+    "sentiment_negative": {
+      "type": "number",
+      "default": 0
+    },
+    "aspects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "aspect": {
+            "type": "string"
+          },
+          "sentiment": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "neutral",
+              "negative"
+            ]
+          },
+          "mentions": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_insights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "top_issue": {
+      "type": "string"
+    },
+    "raw_reviews": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "product_id"
+  ]
+}

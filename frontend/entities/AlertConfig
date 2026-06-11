@@ -1,0 +1,52 @@
+{
+  "name": "AlertConfig",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Email address to send alerts to"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether weekly alerts are enabled"
+    },
+    "product_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of product IDs to monitor"
+    },
+    "day_of_week": {
+      "type": "string",
+      "enum": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ],
+      "default": "monday",
+      "description": "Day to send the weekly alert"
+    },
+    "last_sent_date": {
+      "type": "string",
+      "description": "ISO date of last email sent"
+    },
+    "last_sent_status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "error",
+        "pending"
+      ],
+      "description": "Status of the last send attempt"
+    }
+  },
+  "required": [
+    "email"
+  ]
+}

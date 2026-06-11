@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Fraunces', Georgia, serif;
+    --background: 30 15% 98%;
+    --foreground: 222 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 10%;
+    --primary: 340 72% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 12% 95%;
+    --secondary-foreground: 222 20% 15%;
+    --muted: 30 10% 94%;
+    --muted-foreground: 222 10% 50%;
+    --accent: 340 60% 96%;
+    --accent-foreground: 340 72% 35%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 10% 91%;
+    --input: 220 10% 91%;
+    --ring: 340 72% 45%;
+    --chart-1: 340 72% 51%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 55%;
+    --chart-4: 43 74% 55%;
+    --chart-5: 27 87% 60%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 20% 10%;
+    --sidebar-primary: 340 72% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 340 60% 96%;
+    --sidebar-accent-foreground: 340 72% 35%;
+    --sidebar-border: 220 10% 91%;
+    --sidebar-ring: 340 72% 45%;
+  }
+
+  .dark {
+    --background: 222 25% 7%;
+    --foreground: 30 15% 94%;
+    --card: 222 22% 10%;
+    --card-foreground: 30 15% 94%;
+    --popover: 222 22% 10%;
+    --popover-foreground: 30 15% 94%;
+    --primary: 340 72% 62%;
+    --primary-foreground: 222 25% 7%;
+    --secondary: 222 18% 14%;
+    --secondary-foreground: 30 15% 94%;
+    --muted: 222 18% 14%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 340 30% 18%;
+    --accent-foreground: 340 72% 75%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 15% 18%;
+    --input: 222 15% 18%;
+    --ring: 340 72% 62%;
+    --chart-1: 340 72% 65%;
+    --chart-2: 173 58% 50%;
+    --chart-3: 197 50% 60%;
+    --chart-4: 43 74% 60%;
+    --chart-5: 27 87% 65%;
+    --sidebar-background: 222 22% 10%;
+    --sidebar-foreground: 30 15% 94%;
+    --sidebar-primary: 340 72% 62%;
+    --sidebar-primary-foreground: 222 25% 7%;
+    --sidebar-accent: 340 30% 18%;
+    --sidebar-accent-foreground: 340 72% 75%;
+    --sidebar-border: 222 15% 18%;
+    --sidebar-ring: 340 72% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .card-shadow {
+    box-shadow:
+      0 2px 8px 0 rgb(0 0 0 / 0.12),
+      0 1px 3px -1px rgb(0 0 0 / 0.08),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.3);
+  }
+  .card-shadow-md {
+    box-shadow:
+      0 6px 24px 0 rgb(0 0 0 / 0.18),
+      0 2px 6px -1px rgb(0 0 0 / 0.12),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.3);
+  }
+  .dark .card-shadow {
+    box-shadow:
+      0 2px 8px 0 rgb(0 0 0 / 0.5),
+      0 1px 3px -1px rgb(0 0 0 / 0.4),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.06);
+  }
+  .dark .card-shadow-md {
+    box-shadow:
+      0 6px 24px 0 rgb(0 0 0 / 0.65),
+      0 2px 6px -1px rgb(0 0 0 / 0.5),
+      inset 0 1px 0 0 rgb(255 255 255 / 0.06);
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 2px;
+  }
+}
+
+/* ================================================================
+   CARD COLORS — Or · Bordeaux · Emeraude · Indigo
+   Palette luxe × tech : saturée, contrastée, chaque card unique
+================================================================ */
+
+/* ── LIGHT ── */
+
+/* card-panel : INDIGO profond → violet */
+.card-panel {
+  background: linear-gradient(
+    135deg,
+    hsl(243 60% 82%) 0%,
+    hsl(258 55% 78%) 50%,
+    hsl(275 50% 75%) 100%
+  ) !important;
+  border-color: hsl(250 50% 65%) !important;
+}
+
+/* kpi-card-default : OR chaud → ambre */
+.kpi-card-default {
+  background: linear-gradient(
+    135deg,
+    hsl(45 85% 72%) 0%,
+    hsl(38 80% 65%) 100%
+  ) !important;
+  border-color: hsl(40 70% 55%) !important;
+}
+
+/* kpi-card-positive : EMERAUDE → vert forêt */
+.kpi-card-positive {
+  background: linear-gradient(
+    135deg,
+    hsl(158 65% 68%) 0%,
+    hsl(168 60% 58%) 100%
+  ) !important;
+  border-color: hsl(162 55% 48%) !important;
+}
+
+/* kpi-card-warning : OR brûlé → orange luxe */
+.kpi-card-warning {
+  background: linear-gradient(
+    135deg,
+    hsl(32 85% 68%) 0%,
+    hsl(22 80% 60%) 100%
+  ) !important;
+  border-color: hsl(28 70% 52%) !important;
+}
+
+/* kpi-card-negative : BORDEAUX → rouge profond */
+.kpi-card-negative {
+  background: linear-gradient(
+    135deg,
+    hsl(345 60% 65%) 0%,
+    hsl(355 65% 55%) 100%
+  ) !important;
+  border-color: hsl(350 58% 48%) !important;
+}
+
+/* ── DARK ── */
+
+/* card-panel : INDIGO nuit */
+.dark .card-panel {
+  background: linear-gradient(
+    135deg,
+    hsl(243 45% 20%) 0%,
+    hsl(258 40% 16%) 50%,
+    hsl(275 38% 13%) 100%
+  ) !important;
+  border-color: hsl(252 40% 30%) !important;
+}
+
+/* kpi-card-default : OR sombre */
+.dark .kpi-card-default {
+  background: linear-gradient(
+    135deg,
+    hsl(45 55% 22%) 0%,
+    hsl(38 50% 17%) 100%
+  ) !important;
+  border-color: hsl(42 50% 30%) !important;
+}
+
+/* kpi-card-positive : EMERAUDE nuit */
+.dark .kpi-card-positive {
+  background: linear-gradient(
+    135deg,
+    hsl(158 45% 18%) 0%,
+    hsl(168 40% 14%) 100%
+  ) !important;
+  border-color: hsl(162 42% 26%) !important;
+}
+
+/* kpi-card-warning : ORANGE nuit */
+.dark .kpi-card-warning {
+  background: linear-gradient(
+    135deg,
+    hsl(32 52% 20%) 0%,
+    hsl(22 48% 15%) 100%
+  ) !important;
+  border-color: hsl(28 48% 28%) !important;
+}
+
+/* kpi-card-negative : BORDEAUX nuit */
+.dark .kpi-card-negative {
+  background: linear-gradient(
+    135deg,
+    hsl(345 45% 20%) 0%,
+    hsl(355 50% 15%) 100%
+  ) !important;
+  border-color: hsl(350 45% 28%) !important;
+}
+
+/* ================================================================
+   BLOCS DASHBOARD — couleurs individuelles
+   card-gold      : Répartition sentiment
+   card-indigo    : Score santé
+   card-emerald   : Insights clés
+   card-bordeaux  : Produits récents
+================================================================ */
+
+/* ── LIGHT ── */
+
+.card-gold {
+  background: linear-gradient(135deg, hsl(45 80% 72%) 0%, hsl(38 75% 62%) 100%) !important;
+  border-color: hsl(40 65% 52%) !important;
+}
+.card-indigo {
+  background: linear-gradient(135deg, hsl(243 60% 72%) 0%, hsl(260 55% 62%) 100%) !important;
+  border-color: hsl(250 50% 55%) !important;
+}
+.card-emerald {
+  background: linear-gradient(135deg, hsl(158 60% 65%) 0%, hsl(170 55% 55%) 100%) !important;
+  border-color: hsl(163 50% 48%) !important;
+}
+.card-bordeaux {
+  background: linear-gradient(135deg, hsl(345 58% 62%) 0%, hsl(355 62% 52%) 100%) !important;
+  border-color: hsl(350 55% 46%) !important;
+}
+
+/* ── DARK ── */
+
+.dark .card-gold {
+  background: linear-gradient(135deg, hsl(45 55% 24%) 0%, hsl(38 50% 18%) 100%) !important;
+  border-color: hsl(42 48% 32%) !important;
+}
+.dark .card-indigo {
+  background: linear-gradient(135deg, hsl(243 48% 22%) 0%, hsl(260 42% 17%) 100%) !important;
+  border-color: hsl(252 42% 30%) !important;
+}
+.dark .card-emerald {
+  background: linear-gradient(135deg, hsl(158 45% 20%) 0%, hsl(170 40% 15%) 100%) !important;
+  border-color: hsl(163 40% 27%) !important;
+}
+.dark .card-bordeaux {
+  background: linear-gradient(135deg, hsl(345 45% 22%) 0%, hsl(355 50% 17%) 100%) !important;
+  border-color: hsl(350 44% 29%) !important;
+}

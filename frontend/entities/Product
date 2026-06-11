@@ -1,0 +1,40 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Brand name"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "total_reviews": {
+      "type": "number",
+      "default": 0
+    },
+    "sentiment_score": {
+      "type": "number",
+      "default": 0,
+      "description": "0-100"
+    },
+    "health_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Product health 0-100"
+    }
+  },
+  "required": [
+    "name",
+    "brand"
+  ]
+}
