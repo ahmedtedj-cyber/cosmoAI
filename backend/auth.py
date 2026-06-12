@@ -4,7 +4,8 @@
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
-from passlib.context import CryptContext
+import bcrypt as _bcrypt
+import hashlib
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
@@ -14,16 +15,20 @@ from config import SECRET_KEY          # ← importé depuis config.py
 ALGORITHM                   = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7   # 7 jours
 
-pwd_context   = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__rounds=12)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
 # ── Password ─────────────────────────────
+# On pré-hashe avec SHA-256 pour contourner la limite 72 bytes de bcrypt
+# et le bug de détection de passlib sur Python 3.13
+def _prepare(password: str) -> bytes:
+    return hashlib.sha256(password.encode("utf-8")).digest()
+
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password[:72])
+    return _bcrypt.hashpw(_prepare(password), _bcrypt.gensalt(rounds=12)).decode("utf-8")
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain[:72], hashed)
+    return _bcrypt.checkpw(_prepare(plain), hashed.encode("utf-8"))
 
 
 # ── Token ────────────────────────────────
