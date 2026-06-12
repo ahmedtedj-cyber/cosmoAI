@@ -1,6 +1,7 @@
 # ─────────────────────────────────────────
-#  database.py  —  SQLite + SQLAlchemy ORM
+#  database.py  —  SQLite (local) / PostgreSQL (production) + SQLAlchemy ORM
 # ─────────────────────────────────────────
+import os
 from sqlalchemy import (
     create_engine, Column, Integer, String,
     Float, Text, DateTime, ForeignKey, JSON, Boolean
@@ -9,11 +10,20 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
 
-DATABASE_URL = "sqlite:///./cosmoai.db"
+# ✅ Utilise DATABASE_URL si définie (Railway/PostgreSQL),
+#    sinon retombe sur SQLite local
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./cosmoai.db")
+
+# Railway fournit parfois "postgres://" mais SQLAlchemy veut "postgresql://"
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+# connect_args spécifique à SQLite uniquement
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    connect_args=connect_args
 )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
