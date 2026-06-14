@@ -42,7 +42,10 @@ def _get(url: str, session: requests.Session, timeout: int = 15) -> Optional[Bea
     try:
         r = session.get(url, headers=HEADERS, timeout=timeout)
         r.raise_for_status()
-        return BeautifulSoup(r.text, "lxml")
+        try:
+            return BeautifulSoup(r.text, "lxml")
+        except Exception:
+            return BeautifulSoup(r.text, "html.parser")
     except Exception as e:
         logger.warning(f"GET {url} → {e}")
         return None
