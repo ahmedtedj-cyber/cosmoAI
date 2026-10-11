@@ -3,7 +3,8 @@
 //  Remplace base44Client.js — gère JWT, produits, analyses
 // ═══════════════════════════════════════════════════════════════
 
-const BASE_URL = "https://cosmoai-production.up.railway.app";
+// URL du backend : définie par VITE_API_URL (Netlify / .env), sans slash final
+const BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/+$/, "");
 
 // ── Token storage ─────────────────────────────────────────────
 const getToken = () => localStorage.getItem("cosmoai_token");
